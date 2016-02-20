@@ -49,6 +49,7 @@
             this.lblEnterData = new System.Windows.Forms.Label();
             this.txtResult = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdoFasting = new System.Windows.Forms.RadioButton();
             this.grpBTestResults.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -208,6 +209,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.rdoFasting);
             this.groupBox1.Controls.Add(this.btnResult);
             this.groupBox1.Controls.Add(this.lblEnterData);
             this.groupBox1.Controls.Add(this.txtResult);
@@ -217,6 +219,17 @@
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Blood Sugar Levels";
+            // 
+            // rdoFasting
+            // 
+            this.rdoFasting.AutoSize = true;
+            this.rdoFasting.Location = new System.Drawing.Point(135, 96);
+            this.rdoFasting.Name = "rdoFasting";
+            this.rdoFasting.Size = new System.Drawing.Size(59, 17);
+            this.rdoFasting.TabIndex = 7;
+            this.rdoFasting.TabStop = true;
+            this.rdoFasting.Text = "Fasting";
+            this.rdoFasting.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -263,6 +276,7 @@
         private System.Windows.Forms.TextBox txtResult;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.RadioButton rdoFasting;
     }
 }
 
