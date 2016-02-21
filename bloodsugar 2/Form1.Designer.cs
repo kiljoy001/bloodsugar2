@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,7 +43,7 @@
             this.lblDate = new System.Windows.Forms.Label();
             this.btnShowDict = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartResults = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.btnResult = new System.Windows.Forms.Button();
             this.lblEnterData = new System.Windows.Forms.Label();
@@ -52,7 +52,7 @@
             this.rdoFasting = new System.Windows.Forms.RadioButton();
             this.grpBTestResults.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartResults)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -147,7 +147,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.chart1);
+            this.groupBox2.Controls.Add(this.chartResults);
             this.groupBox2.Location = new System.Drawing.Point(240, 27);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(611, 365);
@@ -155,21 +155,21 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Recorded Levels Over Time";
             // 
-            // chart1
+            // chartResults
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(7, 16);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(598, 343);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
+            chartArea2.Name = "ChartArea1";
+            this.chartResults.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartResults.Legends.Add(legend2);
+            this.chartResults.Location = new System.Drawing.Point(7, 16);
+            this.chartResults.Name = "chartResults";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartResults.Series.Add(series2);
+            this.chartResults.Size = new System.Drawing.Size(598, 343);
+            this.chartResults.TabIndex = 0;
+            this.chartResults.Text = "chart1";
             // 
             // menuStrip1
             // 
@@ -190,6 +190,7 @@
             this.btnResult.TabIndex = 6;
             this.btnResult.Text = "Enter Result";
             this.btnResult.UseVisualStyleBackColor = true;
+            this.btnResult.Click += new System.EventHandler(this.btnResult_Click);
             // 
             // lblEnterData
             // 
@@ -246,7 +247,7 @@
             this.grpBTestResults.ResumeLayout(false);
             this.grpBTestResults.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartResults)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -275,7 +276,7 @@
         private System.Windows.Forms.Label lblEnterData;
         private System.Windows.Forms.TextBox txtResult;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartResults;
         private System.Windows.Forms.RadioButton rdoFasting;
     }
 }

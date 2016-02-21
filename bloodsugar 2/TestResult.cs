@@ -18,6 +18,12 @@ namespace bloodsugar_2
         {
             _resultsMemory = resultsMemory;
         }
+        public bool isInitialized;
+        public TestResult()
+        {
+            isInitialized = true;
+        }
+
         //properties
         private Dictionary<long, string> resultsMemory
         {
@@ -29,28 +35,40 @@ namespace bloodsugar_2
         //methods
         public void readIt()
         {
+            long dbDate;
+            string dbResult;
             SQLiteConnection dbConnect;
-            dbConnect = new SQLiteConnection("Data Source=database.sqlite;Version=3;");
+            dbConnect = new SQLiteConnection("Data Source=database.sqlite; Version=3;");
             dbConnect.Open();
             string readAllRows = "SELECT date, testResult FROM result ORDER BY date ASC";
 
             SQLiteCommand readRow = new SQLiteCommand(readAllRows, dbConnect);
             SQLiteDataReader reader = readRow.ExecuteReader();
-            long dbDate = long.Parse(reader["date"].ToString());
-            string dbResult = reader["testResult"].ToString();
+            
             while (reader.Read())
             {
+                dbDate = long.Parse(reader["date"].ToString());
+                dbResult = reader["testResult"].ToString();
                 _resultsMemory.Add(dbDate, dbResult);
             }
+            
         }
-        public void writeIt(string inputText)
+        public void writeIt(string inputText, bool fasting)
         {
             SQLiteConnection dbConnect;
             dbConnect = new SQLiteConnection("Data Source=database.sqlite;Version=3;");
             dbConnect.Open();
-            string result = "INSERT INTO result(testResult) VALUES(@param1)";
+            string result = "INSERT INTO result(testResult, fasting) VALUES(@param1, @param2)";
             SQLiteCommand writeRow = new SQLiteCommand(result, dbConnect);
             writeRow.Parameters.Add(new SQLiteParameter("@param1", inputText));
+            if(fasting)
+            {
+                writeRow.Parameters.Add(new SQLiteParameter("@param2", 1));
+            }
+            else
+            {
+                writeRow.Parameters.Add(new SQLiteParameter("@param2", 0));
+            }
         }
         //method that converts unix time to a datetime object
         //http://stackoverflow.com/questions/2883576/how-do-you-convert-epoch-time-in-c
