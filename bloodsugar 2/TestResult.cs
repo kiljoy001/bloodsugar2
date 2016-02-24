@@ -12,6 +12,7 @@ namespace bloodsugar_2
     {
         //fields
         Dictionary<long, string> _resultsMemory;
+        int _fasting;
 
         //construtor
         public TestResult(Dictionary<long, string> resultsMemory)
@@ -32,15 +33,23 @@ namespace bloodsugar_2
                 return _resultsMemory;
             }
         }
+        private int fasting
+        {
+            get
+            {
+                return _fasting;
+            }
+        } 
         //methods
         public void readIt()
         {
             long dbDate;
             string dbResult;
+            int dbFast;
             SQLiteConnection dbConnect;
             dbConnect = new SQLiteConnection("Data Source=database.sqlite; Version=3;");
             dbConnect.Open();
-            string readAllRows = "SELECT date, testResult FROM result ORDER BY date ASC";
+            string readAllRows = "SELECT date, testResult,  FROM result ORDER BY date ASC";
 
             SQLiteCommand readRow = new SQLiteCommand(readAllRows, dbConnect);
             SQLiteDataReader reader = readRow.ExecuteReader();
@@ -49,6 +58,7 @@ namespace bloodsugar_2
             {
                 dbDate = long.Parse(reader["date"].ToString());
                 dbResult = reader["testResult"].ToString();
+                dbFast = int.Parse(reader["fasting"].ToString());
                 _resultsMemory.Add(dbDate, dbResult);
             }
             
