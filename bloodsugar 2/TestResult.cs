@@ -73,31 +73,19 @@ namespace bloodsugar_2
                 {
                     SQLiteParameter resultEntry = new SQLiteParameter();
                     insertCommand.CommandText = "INSERT INTO result(testResult, fasting) VALUES(@param1, @param2)";
-                    insertCommand.Parameters.AddWithValue(new SQLiteParameter("@param1", System.Data.SqlDbType.VarChar).Value = inputText);
+                    insertCommand.Parameters.Add("@param1", System.Data.DbType.String).Value = inputText;
                     if(fasting)
                     {
-                        insertCommand.Parameters.Add(new SQLiteParameter("@param2", System.Data.SqlDbType.Int).Value = "1");
+                        insertCommand.Parameters.Add("@param2", System.Data.DbType.Int32).Value = "1";
                     }
                     else
                     {
-                        insertCommand.Parameters.Add(new SQLiteParameter("@param2", System.Data.SqlDbType.Int).Value = "0");
+                        insertCommand.Parameters.Add("@param2", System.Data.DbType.Int32).Value = "0";
                     }
                     insertCommand.ExecuteNonQuery();
                 }
                 insertTrans.Commit();
             }
-            
-            //var resultEntry = "INSERT INTO result(testResult, fasting) VALUES(?, ?)";
-            
-            //writeRow.Parameters.Add(new SQLiteParameter("?", inputText));
-            //if (fasting)
-            //{
-            //    insertCommand.Parameter.Add(new SQLiteParameter("@param2", 1));
-            //}
-            //else
-            //{
-            //    insertCommand.Parameter.Add(new SQLiteParameter("@param2", 0));
-            //}
         }
         //method that converts unix time to a datetime object
         //http://stackoverflow.com/questions/2883576/how-do-you-convert-epoch-time-in-c
