@@ -51,7 +51,7 @@ namespace bloodsugar_2
             //Open for business!
             dbConnect.Open();
             //Table Creation
-            string createTable = "CREATE TABLE result (testID INTEGER PRIMARY KEY, date TIMESTAMP DEFAULT(STRFTIME('%s', 'now')) , testResult TEXT, fasting INTEGER)";
+            string createTable = "CREATE TABLE result (date TIMESTAMP PRIMARY KEY DEFAULT(STRFTIME('%s', 'now')) , testResult TEXT, fasting INTEGER)";
             SQLiteCommand newTable = new SQLiteCommand(createTable, dbConnect);
             newTable.ExecuteNonQuery();
             //Close the connection.
@@ -62,10 +62,15 @@ namespace bloodsugar_2
             string dateTimeFormat = "{0}-{1}-{2} {3}:{4}:{5}.{6}";
             return string.Format(dateTimeFormat, datetime.Year, datetime.Month, datetime.Day, datetime.Hour, datetime.Minute, datetime.Second, datetime.Millisecond);
         }
-
+        private void searchDateOnChange(object sender, EventArgs e)
+        {
+            DateTime selectedDate = findDate.Value;
+            listBResult.Items.Add(selectedDate.ToString());
+        }
         private void btnResult_Click(object sender, EventArgs e)
         {
             mainModel.writeIt(txtResult.Text, isFasting());
+            txtResult.Clear();
 
         }
     }

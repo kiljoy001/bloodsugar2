@@ -49,7 +49,7 @@ namespace bloodsugar_2
             SQLiteConnection dbConnect;
             dbConnect = new SQLiteConnection("Data Source=database.sqlite; Version=3;");
             dbConnect.Open();
-            string readAllRows = "SELECT date, testResult,  FROM result ORDER BY date ASC";
+            string readAllRows = "SELECT date, testResult, fasting FROM result ORDER BY date ASC";
 
             SQLiteCommand readRow = new SQLiteCommand(readAllRows, dbConnect);
             SQLiteDataReader reader = readRow.ExecuteReader();
@@ -65,20 +65,39 @@ namespace bloodsugar_2
         }
         public void writeIt(string inputText, bool fasting)
         {
-            SQLiteConnection dbConnect;
-            dbConnect = new SQLiteConnection("Data Source=database.sqlite;Version=3;");
+            var dbConnect = new SQLiteConnection("Data Source=database.sqlite;Version=3;");
             dbConnect.Open();
-            string result = "INSERT INTO result(testResult, fasting) VALUES(@param1, @param2)";
-            SQLiteCommand writeRow = new SQLiteCommand(result, dbConnect);
-            writeRow.Parameters.Add(new SQLiteParameter("@param1", inputText));
-            if(fasting)
+            using (SQLiteTransaction insertTrans = dbConnect.BeginTransaction())
             {
-                writeRow.Parameters.Add(new SQLiteParameter("@param2", 1));
+                using (SQLiteCommand insertCommand = new SQLiteCommand(dbConnect))
+                {
+                    SQLiteParameter resultEntry = new SQLiteParameter();
+                    insertCommand.CommandText = "INSERT INTO result(testResult, fasting) VALUES(@param1, @param2)";
+                    insertCommand.Parameters.AddWithValue(new SQLiteParameter("@param1", System.Data.SqlDbType.VarChar).Value = inputText);
+                    if(fasting)
+                    {
+                        insertCommand.Parameters.Add(new SQLiteParameter("@param2", System.Data.SqlDbType.Int).Value = "1");
+                    }
+                    else
+                    {
+                        insertCommand.Parameters.Add(new SQLiteParameter("@param2", System.Data.SqlDbType.Int).Value = "0");
+                    }
+                    insertCommand.ExecuteNonQuery();
+                }
+                insertTrans.Commit();
             }
-            else
-            {
-                writeRow.Parameters.Add(new SQLiteParameter("@param2", 0));
-            }
+            
+            //var resultEntry = "INSERT INTO result(testResult, fasting) VALUES(?, ?)";
+            
+            //writeRow.Parameters.Add(new SQLiteParameter("?", inputText));
+            //if (fasting)
+            //{
+            //    insertCommand.Parameter.Add(new SQLiteParameter("@param2", 1));
+            //}
+            //else
+            //{
+            //    insertCommand.Parameter.Add(new SQLiteParameter("@param2", 0));
+            //}
         }
         //method that converts unix time to a datetime object
         //http://stackoverflow.com/questions/2883576/how-do-you-convert-epoch-time-in-c
