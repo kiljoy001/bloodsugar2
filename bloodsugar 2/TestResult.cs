@@ -12,12 +12,12 @@ namespace bloodsugar_2
     {
         //fields
         Dictionary<long, string> _resultsMemory;
-        int _fasting;
-
+        
         //construtor
         public TestResult(Dictionary<long, string> resultsMemory)
         {
             _resultsMemory = resultsMemory;
+           
         }
         public bool isInitialized;
         public TestResult()
@@ -33,37 +33,36 @@ namespace bloodsugar_2
                 return _resultsMemory;
             }
         }
-        private int fasting
-        {
-            get
-            {
-                return _fasting;
-            }
-        } 
+        
         //methods
-        public void readIt()
+        public void readIt(Dictionary<long, string> addMemory)
         {
             long dbDate;
             string dbResult;
             int dbFast;
-            SQLiteConnection dbConnect;
-            dbConnect = new SQLiteConnection("Data Source=database.sqlite; Version=3;");
-            dbConnect.Open();
-            string readAllRows = "SELECT date, testResult, fasting FROM result ORDER BY date ASC";
-
-            SQLiteCommand readRow = new SQLiteCommand(readAllRows, dbConnect);
-            SQLiteDataReader reader = readRow.ExecuteReader();
-            
-            while (reader.Read())
+            //SQLiteConnection dbConnect;
+            using (SQLiteConnection dbConnect = new SQLiteConnection("Data Source=database.sqlite; Version=3;"))
             {
-                dbDate = long.Parse(reader["date"].ToString());
-                dbResult = reader["testResult"].ToString();
-                dbFast = int.Parse(reader["fasting"].ToString());
-                _resultsMemory.Add(dbDate, dbResult);
+                dbConnect.Open();
+                string readAllRows = "SELECT date, testResult, fasting FROM result ORDER BY date ASC";
+                using (SQLiteCommand readRow = new SQLiteCommand(readAllRows, dbConnect))
+                {
+                    using (SQLiteDataReader reader = readRow.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            dbDate = reader.GetInt64(0);
+                            dbResult = reader["testResult"].ToString();
+                            dbFast = int.Parse(reader["fasting"].ToString());
+                            addMemory.Add(dbDate, dbResult);
+                        }
+                    }
+                }
+                dbConnect.Close();
             }
-            
         }
-        public void writeIt(string inputText, bool fasting)
+
+        public void writeIt(string inputText, int fasting)
         {
             var dbConnect = new SQLiteConnection("Data Source=database.sqlite;Version=3;");
             dbConnect.Open();
@@ -74,13 +73,13 @@ namespace bloodsugar_2
                     SQLiteParameter resultEntry = new SQLiteParameter();
                     insertCommand.CommandText = "INSERT INTO result(testResult, fasting) VALUES(@param1, @param2)";
                     insertCommand.Parameters.Add("@param1", System.Data.DbType.String).Value = inputText;
-                    if(fasting)
+                    if(fasting == 1)
                     {
-                        insertCommand.Parameters.Add("@param2", System.Data.DbType.Int32).Value = "1";
+                        insertCommand.Parameters.Add("@param2", System.Data.DbType.Int32).Value = 1;
                     }
                     else
                     {
-                        insertCommand.Parameters.Add("@param2", System.Data.DbType.Int32).Value = "0";
+                        insertCommand.Parameters.Add("@param2", System.Data.DbType.Int32).Value = 0;
                     }
                     insertCommand.ExecuteNonQuery();
                 }

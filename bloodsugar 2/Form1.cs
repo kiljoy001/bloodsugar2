@@ -27,18 +27,19 @@ namespace bloodsugar_2
             
             if (tempStorage.Count == 0)
             {
-                 mainModel.readIt();
+                 mainModel.readIt(tempStorage);
             }
+            mainModel.chartIt(chartResults, tempStorage);
         }
-        private bool isFasting()
+        private int isFasting()
         {
             if(rdoFasting.Checked)
             {
-                return true;
+                return 1;
             }
             else
             {
-                return false;
+                return 0;
             }
         }
         public void dbcreate()
