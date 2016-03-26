@@ -164,7 +164,9 @@
             this.chartResults.Legends.Add(legend1);
             this.chartResults.Location = new System.Drawing.Point(7, 16);
             this.chartResults.Name = "chartResults";
+            this.chartResults.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SemiTransparent;
             series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartResults.Series.Add(series1);
@@ -191,7 +193,7 @@
             this.btnResult.TabIndex = 6;
             this.btnResult.Text = "Enter Result";
             this.btnResult.UseVisualStyleBackColor = true;
-            this.btnResult.Click += new System.EventHandler(this.btnResult_Click);
+            //this.btnResult.Click += new System.EventHandler(this.btnResult_Click);
             // 
             // lblEnterData
             // 
