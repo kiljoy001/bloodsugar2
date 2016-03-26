@@ -81,9 +81,9 @@ namespace bloodsugar_2
                 }
                 foreach (long items in retrivedDates)
                 {
-                    long dbDate;
-                    string dbResult;
-                    int dbFast;
+                    long dbDate = 0;
+                    string dbResult = null;
+                    int dbFast = 0;
 
                     using (SQLiteConnection dbConnect = new SQLiteConnection("Data Source=database.sqlite; Version=3;"))
                     {
@@ -92,8 +92,8 @@ namespace bloodsugar_2
                         using (SQLiteCommand compareDates = new SQLiteCommand(dbConnect))
                         {
                             SQLiteParameter findDate = new SQLiteParameter();
-                            compareDates.CommandText = "SELECT date, testResult, fasting FROM result WHERE date <= @selectedDateValue ";
-
+                            compareDates.CommandText = "SELECT date, testResult, fasting FROM result WHERE date <= @selectedDateValue";
+                            compareDates.Parameters.AddWithValue("@selectedDateValue", System.Data.DbType.String).Value = items;
                             using (SQLiteDataReader reader = compareDates.ExecuteReader())
                             {
                                 while (reader.Read())
@@ -108,6 +108,7 @@ namespace bloodsugar_2
                         }
                         dbConnect.Close();
                     }
+                    listBResult.Items.Add(mainModel.fromUnixTime(dbDate).ToShortDateString() +" " + dbResult);
                 }
             }
            }
