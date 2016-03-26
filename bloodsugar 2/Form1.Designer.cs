@@ -193,7 +193,7 @@
             this.btnResult.TabIndex = 6;
             this.btnResult.Text = "Enter Result";
             this.btnResult.UseVisualStyleBackColor = true;
-            //this.btnResult.Click += new System.EventHandler(this.btnResult_Click);
+            this.btnResult.Click += new System.EventHandler(this.btnResult_Click);
             // 
             // lblEnterData
             // 
