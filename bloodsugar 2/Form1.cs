@@ -166,7 +166,21 @@ namespace bloodsugar_2
                 listBResult.Items.Add(mainModel.fromUnixTime(dbDate).ToShortDateString() + " " + dbResult);
             }
         }
-            
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void newToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
    
 }
