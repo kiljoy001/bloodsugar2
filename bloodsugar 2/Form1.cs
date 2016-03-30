@@ -181,6 +181,11 @@ namespace bloodsugar_2
         {
             DialogResult warning = MessageBox.Show("Creating a new database will clear the chart!\nDo you still wish to proceed?", "WARNING!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
    
 }
