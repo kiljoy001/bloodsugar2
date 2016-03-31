@@ -23,7 +23,7 @@ namespace bloodsugar_2
             string dbName = "database.sqlite";
             if (File.Exists(dbName) == false)
             {
-                dbcreate();
+                dbcreate("");
             }
             
             if (tempStorage.Count == 0)
@@ -44,10 +44,19 @@ namespace bloodsugar_2
                 return 0;
             }
         }
-        public void dbcreate()
+        public void dbcreate(string input)
         {
-            //Create the database and populate it with a table called result
-            SQLiteConnection.CreateFile("database.sqlite");
+            if (String.IsNullOrWhiteSpace(input))
+            {
+                //default file name
+                SQLiteConnection.CreateFile("database.sqlite");
+            }
+            else
+            {
+                //Create the database with a chosen username
+                SQLiteConnection.CreateFile(input + ".sqlite");
+            }
+            
             //Connection String
             SQLiteConnection dbConnect;
             dbConnect = new SQLiteConnection("Data Source=database.sqlite;Version=3;");
@@ -180,6 +189,14 @@ namespace bloodsugar_2
         private void newToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             DialogResult warning = MessageBox.Show("Creating a new database will clear the chart!\nDo you still wish to proceed?", "WARNING!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if(warning == DialogResult.OK)
+            {
+                SaveFileDialog saveDB = new SaveFileDialog();
+                saveDB.AddExtension = true;
+                saveDB.CheckFileExists = true;
+                saveDB.OverwritePrompt = true;
+
+            }
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
