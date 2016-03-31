@@ -17,7 +17,7 @@
 
 namespace bloodsugar_2
 {
-    partial class Form1
+    partial class mainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -45,10 +45,10 @@ namespace bloodsugar_2
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.grpBTestResults = new System.Windows.Forms.GroupBox();
             this.findDate = new System.Windows.Forms.DateTimePicker();
             this.listBResult = new System.Windows.Forms.ListBox();
@@ -62,6 +62,7 @@ namespace bloodsugar_2
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rdoFasting = new System.Windows.Forms.RadioButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -72,10 +73,9 @@ namespace bloodsugar_2
             this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grpBTestResults.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartResults)).BeginInit();
@@ -143,18 +143,18 @@ namespace bloodsugar_2
             // 
             // chartResults
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartResults.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartResults.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chartResults.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartResults.Legends.Add(legend1);
             this.chartResults.Location = new System.Drawing.Point(7, 16);
             this.chartResults.Name = "chartResults";
             this.chartResults.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SemiTransparent;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartResults.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartResults.Series.Add(series1);
             this.chartResults.Size = new System.Drawing.Size(598, 343);
             this.chartResults.TabIndex = 0;
             this.chartResults.Text = "chart1";
@@ -221,79 +221,6 @@ namespace bloodsugar_2
             this.menuStrip1.TabIndex = 14;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
-            this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.newToolStripMenuItem.Text = "&New";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click_1);
-            // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
-            this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.openToolStripMenuItem.Text = "&Open";
-            // 
-            // toolStripSeparator
-            // 
-            this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(149, 6);
-            // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
-            this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.saveToolStripMenuItem.Text = "&Save";
-            // 
-            // saveAsToolStripMenuItem
-            // 
-            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.saveAsToolStripMenuItem.Text = "Save &As";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
-            // 
-            // printToolStripMenuItem
-            // 
-            this.printToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printToolStripMenuItem.Image")));
-            this.printToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.printToolStripMenuItem.Text = "&Print";
-            // 
-            // printPreviewToolStripMenuItem
-            // 
-            this.printPreviewToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printPreviewToolStripMenuItem.Image")));
-            this.printPreviewToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
-            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.printPreviewToolStripMenuItem.Text = "Print Pre&view";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.exitToolStripMenuItem.Text = "E&xit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -311,17 +238,78 @@ namespace bloodsugar_2
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
             // 
-            // toolStripSeparator5
+            // newToolStripMenuItem
             // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
+            this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
+            this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.newToolStripMenuItem.Text = "&New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click_1);
             // 
-            // aboutToolStripMenuItem
+            // openToolStripMenuItem
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.aboutToolStripMenuItem.Text = "&About...";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
+            this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.openToolStripMenuItem.Text = "&Open";
+            // 
+            // toolStripSeparator
+            // 
+            this.toolStripSeparator.Name = "toolStripSeparator";
+            this.toolStripSeparator.Size = new System.Drawing.Size(143, 6);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
+            this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveToolStripMenuItem.Text = "&Save";
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveAsToolStripMenuItem.Text = "Save &As";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
+            // 
+            // printToolStripMenuItem
+            // 
+            this.printToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printToolStripMenuItem.Image")));
+            this.printToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
+            this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.printToolStripMenuItem.Text = "&Print";
+            // 
+            // printPreviewToolStripMenuItem
+            // 
+            this.printPreviewToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printPreviewToolStripMenuItem.Image")));
+            this.printPreviewToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
+            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.printPreviewToolStripMenuItem.Text = "Print Pre&view";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(143, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.exitToolStripMenuItem.Text = "E&xit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -332,7 +320,19 @@ namespace bloodsugar_2
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
-            // Form1
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(113, 6);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.aboutToolStripMenuItem.Text = "&About...";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -343,8 +343,8 @@ namespace bloodsugar_2
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "mainForm";
+            this.Text = "Blood Sugar Recorder ";
             this.grpBTestResults.ResumeLayout(false);
             this.grpBTestResults.PerformLayout();
             this.groupBox2.ResumeLayout(false);

@@ -10,13 +10,13 @@ using System.IO;
 namespace bloodsugar_2
 {
 
-    public partial class Form1 : Form
+    public partial class mainForm : Form
     {
         Dictionary<long, string> tempStorage = new Dictionary<long, string>();
         TestResult mainModel = new TestResult();
         List<long> retrivedDates = new List<long>();
 
-        public Form1()
+        public mainForm()
         {
             InitializeComponent();
             
@@ -184,7 +184,8 @@ namespace bloodsugar_2
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            About aboutForm = new About();
+            aboutForm.ShowDialog();
         }
     }
    
