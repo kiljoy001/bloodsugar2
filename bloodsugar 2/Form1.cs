@@ -15,7 +15,7 @@ namespace bloodsugar_2
         Dictionary<long, string> tempStorage = new Dictionary<long, string>();
         TestResult mainModel = new TestResult();
         List<long> retrivedDates = new List<long>();
-
+        //string dbName = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public mainForm()
         {
             InitializeComponent();
@@ -59,7 +59,7 @@ namespace bloodsugar_2
             
             //Connection String
             SQLiteConnection dbConnect;
-            dbConnect = new SQLiteConnection("Data Source=database.sqlite;Version=3;");
+            dbConnect = new SQLiteConnection("Data Source=" + input+";Version=3;");
             //Open for business!
             dbConnect.Open();
             //Table Creation
@@ -193,8 +193,18 @@ namespace bloodsugar_2
             {
                 SaveFileDialog saveDB = new SaveFileDialog();
                 saveDB.AddExtension = true;
-                saveDB.CheckFileExists = true;
+                //saveDB.CheckFileExists = true;
                 saveDB.OverwritePrompt = true;
+                saveDB.DefaultExt = "sqlite";
+                saveDB.Filter = "Sqlite files (*.sqlite) |*.sqlite|All Files (*.*) |*.*";
+                saveDB.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                //saveDB.ShowDialog();
+                DialogResult saveMe = saveDB.ShowDialog();
+                if(saveMe == DialogResult.OK)
+                {
+                    dbcreate(saveDB.FileName);
+
+                }
 
             }
         }
