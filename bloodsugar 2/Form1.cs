@@ -15,22 +15,22 @@ namespace bloodsugar_2
         Dictionary<long, string> tempStorage = new Dictionary<long, string>();
         TestResult mainModel = new TestResult();
         List<long> retrivedDates = new List<long>();
-        //string dbName = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        string[] dbName = Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),"*.sqlite",SearchOption.TopDirectoryOnly );
         public mainForm()
         {
             InitializeComponent();
             
-            string dbName = "database.sqlite";
-            if (File.Exists(dbName) == false)
-            {
-                dbcreate("");
-            }
+            //string dbName = "database.sqlite";
+            //if (File.Exists(dbName) == false)
+            //{
+            //    dbcreate("");
+            //}
             
-            if (tempStorage.Count == 0)
-            {
-                 mainModel.readIt(tempStorage);
-            }
-            mainModel.chartIt(chartResults, tempStorage);
+            //if (tempStorage.Count == 0)
+            //{
+            //     mainModel.readIt(tempStorage);
+            //}
+            //mainModel.chartIt(chartResults, tempStorage);
         }
         //helper method to create a basic 1 bit boolean value to be stored in the database
         private int isFasting()
@@ -213,6 +213,14 @@ namespace bloodsugar_2
         {
             About aboutForm = new About();
             aboutForm.ShowDialog();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openDB = new OpenFileDialog();
+            openDB.DefaultExt = "sqlite";
+            openDB.Filter = "Sqlite files (*.sqlite) |*.sqlite|All Files (*.*) |*.*";
+            openDB.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         }
     }
    
