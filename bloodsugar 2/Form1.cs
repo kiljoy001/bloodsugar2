@@ -15,24 +15,28 @@ namespace bloodsugar_2
         Dictionary<long, string> tempStorage = new Dictionary<long, string>();
         TestResult mainModel = new TestResult();
         List<long> retrivedDates = new List<long>();
+        //returns an array of names that match *sqlite in the My Documents directory.
         string[] dbName = Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),"*.sqlite",SearchOption.TopDirectoryOnly );
         public mainForm()
         {
             InitializeComponent();
-            
-            //string dbName = "database.sqlite";
-            //if (File.Exists(dbName) == false)
-            //{
-            //    dbcreate("");
-            //}
-            
-            //if (tempStorage.Count == 0)
-            //{
-            //     mainModel.readIt(tempStorage);
-            //}
-            //mainModel.chartIt(chartResults, tempStorage);
+
+            if (String.IsNullOrEmpty(mainModel.Database))
+            {
+                DialogResult startNewDB = MessageBox.Show("There is no data loaded, would you like to create a new database?", "No Database Loaded", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+                if(startNewDB == DialogResult.OK)
+                {
+                    saveDBDialog();
+                }
+            }
+
+            if (tempStorage.Count == 0)
+            {
+                mainModel.readIt(tempStorage);
+            }
+            mainModel.chartIt(chartResults, tempStorage);
         }
-        //helper method to create a basic 1 bit boolean value to be stored in the database
+        //helper method to create a basic interger boolean value to be stored in the database
         private int isFasting()
         {
             if(rdoFasting.Checked)
@@ -191,21 +195,7 @@ namespace bloodsugar_2
             DialogResult warning = MessageBox.Show("Creating a new database will clear the chart!\nDo you still wish to proceed?", "WARNING!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if(warning == DialogResult.OK)
             {
-                SaveFileDialog saveDB = new SaveFileDialog();
-                saveDB.AddExtension = true;
-                //saveDB.CheckFileExists = true;
-                saveDB.OverwritePrompt = true;
-                saveDB.DefaultExt = "sqlite";
-                saveDB.Filter = "Sqlite files (*.sqlite) |*.sqlite|All Files (*.*) |*.*";
-                saveDB.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                //saveDB.ShowDialog();
-                DialogResult saveMe = saveDB.ShowDialog();
-                if(saveMe == DialogResult.OK)
-                {
-                    dbcreate(saveDB.FileName);
-
-                }
-
+                
             }
         }
 
@@ -214,13 +204,53 @@ namespace bloodsugar_2
             About aboutForm = new About();
             aboutForm.ShowDialog();
         }
-
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openDBDialog()
         {
             OpenFileDialog openDB = new OpenFileDialog();
             openDB.DefaultExt = "sqlite";
             openDB.Filter = "Sqlite files (*.sqlite) |*.sqlite|All Files (*.*) |*.*";
             openDB.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            openDB.Multiselect = false;
+            DialogResult openMe = openDB.ShowDialog();
+            if (openMe == DialogResult.OK)
+            {
+                mainModel.readIt(tempStorage);
+                mainModel.chartIt(chartResults, tempStorage);
+
+            }
+            else
+            {
+                MessageBox.Show("The database did not load, it may be corrupted or empty.");
+
+            }
+        }
+        private void saveDBDialog()
+        {
+            SaveFileDialog saveDB = new SaveFileDialog();
+            saveDB.AddExtension = true;
+            //saveDB.CheckFileExists = true;
+            saveDB.OverwritePrompt = true;
+            saveDB.DefaultExt = "sqlite";
+            saveDB.Filter = "Sqlite files (*.sqlite) |*.sqlite|All Files (*.*) |*.*";
+            saveDB.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            //saveDB.ShowDialog();
+            DialogResult saveMe = saveDB.ShowDialog();
+            if (saveMe == DialogResult.OK)
+            {
+                dbcreate(saveDB.FileName);
+                mainModel.Database = saveDB.FileName;
+
+
+            }
+        }
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openDBDialog();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+                   
         }
     }
    

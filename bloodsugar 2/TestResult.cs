@@ -12,12 +12,13 @@ namespace bloodsugar_2
     {
         //fields
         private Dictionary<long, string> _resultsMemory;
-        
+        private string _dbName;
+
         //construtor
         public TestResult()
         {
             _resultsMemory = new Dictionary<long, string> ();
-           
+            //_dbName = dbName;
         }
 
         //properties
@@ -29,6 +30,11 @@ namespace bloodsugar_2
             }
         }
 
+        public string Database
+        {
+            get; set;
+        }
+
         //methods
         public void readIt(Dictionary<long, string> addMemory)
         {
@@ -36,7 +42,7 @@ namespace bloodsugar_2
             string dbResult;
             int dbFast;
             //SQLiteConnection dbConnect;
-            using (SQLiteConnection dbConnect = new SQLiteConnection("Data Source=database.sqlite; Version=3;"))
+            using (SQLiteConnection dbConnect = new SQLiteConnection("Data Source=" +_dbName + "; Version=3;"))
             {
                 dbConnect.Open();
                 string readAllRows = "SELECT date, testResult, fasting FROM result ORDER BY date ASC";
@@ -62,7 +68,7 @@ namespace bloodsugar_2
         public void writeIt(string inputText, int fasting)
         {
             //open db connection
-            var dbConnect = new SQLiteConnection("Data Source=database.sqlite;Version=3;");
+            var dbConnect = new SQLiteConnection("Data Source=" + _dbName + "; Version=3;");
             dbConnect.Open();
             using (SQLiteTransaction insertTrans = dbConnect.BeginTransaction())
             { //start transaction
