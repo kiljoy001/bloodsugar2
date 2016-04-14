@@ -18,7 +18,7 @@ namespace bloodsugar_2
         public TestResult()
         {
             _resultsMemory = new Dictionary<long, string> ();
-            //_dbName = dbName;
+            _dbName = Database;
         }
 
         //properties
@@ -42,7 +42,7 @@ namespace bloodsugar_2
             string dbResult;
             int dbFast;
             //SQLiteConnection dbConnect;
-            using (SQLiteConnection dbConnect = new SQLiteConnection("Data Source=" +_dbName + "; Version=3;"))
+            using (SQLiteConnection dbConnect = new SQLiteConnection("Data Source=" +Database + "; Version=3;"))
             {
                 try
                 {
@@ -75,8 +75,8 @@ namespace bloodsugar_2
 
         public void writeIt(string inputText, int fasting)
         {
-            //open db connection
-            var dbConnect = new SQLiteConnection("Data Source=" + _dbName + "; Version=3;");
+            //open db connection uses the database property to get the location of the sqlite file.
+            var dbConnect = new SQLiteConnection("Data Source=" + Database + "; Version=3;");
             dbConnect.Open();
             using (SQLiteTransaction insertTrans = dbConnect.BeginTransaction())
             { //start transaction

@@ -206,20 +206,31 @@ namespace bloodsugar_2
         }
         private void openDBDialog()
         {
+            //new openfiledialog object
             OpenFileDialog openDB = new OpenFileDialog();
+            //default extension
             openDB.DefaultExt = "sqlite";
+            //extension filter
             openDB.Filter = "Sqlite files (*.sqlite) |*.sqlite|All Files (*.*) |*.*";
+            //initial directory to search for the files - I have set to 'my documents'
             openDB.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            //there can only be one file open ... lol highlander.
             openDB.Multiselect = false;
+            //setting up the program to understand openDB dialog object's result
             DialogResult openMe = openDB.ShowDialog();
             if (openMe == DialogResult.OK)
             {
+                //Sets the database property for the testResult object (it is not set by default)
+                mainModel.Database = openDB.FileName;
+                //read the information from the db
                 mainModel.readIt(tempStorage);
+                //display it
                 mainModel.chartIt(chartResults, tempStorage);
 
             }
             else
             {
+                //this does not seem to work, might need to use an exception to make this happen
                 MessageBox.Show("The database did not load, it may be corrupted or empty.");
 
             }
