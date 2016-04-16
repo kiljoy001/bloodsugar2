@@ -115,6 +115,11 @@ namespace bloodsugar_2
                 mainChart.Series[0].Points.AddXY(x, pair.Value);
             }
         }
+        public void Clear()
+        {
+            Database = null;
+            _resultsMemory.Clear();
+        }
         
     }
 }

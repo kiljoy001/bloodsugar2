@@ -98,7 +98,7 @@ namespace bloodsugar_2
                     string dbResult = null;
                     int dbFast = 0;
 
-                    using (SQLiteConnection dbConnect = new SQLiteConnection("Data Source=database.sqlite; Version=3;"))
+                    using (SQLiteConnection dbConnect = new SQLiteConnection("Data Source=" + mainModel.Database + "; Version=3;"))
                     {
                         dbConnect.Open();
                         
@@ -132,7 +132,7 @@ namespace bloodsugar_2
                     string dbResult = null;
                     int dbFast = 0;
 
-                    using (SQLiteConnection dbConnect = new SQLiteConnection("Data Source=database.sqlite; Version=3;"))
+                    using (SQLiteConnection dbConnect = new SQLiteConnection("Data Source=" + mainModel.Database + "; Version=3;"))
                     {
                         dbConnect.Open();
 
@@ -195,7 +195,9 @@ namespace bloodsugar_2
             DialogResult warning = MessageBox.Show("Creating a new database will clear the chart!\nDo you still wish to proceed?", "WARNING!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if(warning == DialogResult.OK)
             {
-                
+                mainModel.Clear();
+                chartResults.Series[0].Points.Clear();
+                saveDBDialog();
             }
         }
 
