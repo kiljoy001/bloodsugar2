@@ -161,10 +161,16 @@ namespace bloodsugar_2
            }
         private void btnResult_Click(object sender, EventArgs e)
         {
-            mainModel.writeIt(txtResult.Text, isFasting());
-            txtResult.Clear();
-            chartResults.Series[0].Points.Clear();
-            mainModel.chartIt(chartResults, tempStorage);
+            int numberResult;
+            bool inputText = int.TryParse(txtResult.Text, out numberResult);
+            if (inputText)
+            {
+                mainModel.writeIt(txtResult.Text, isFasting());
+                txtResult.Clear();
+                chartResults.Series[0].Points.Clear();
+                mainModel.chartIt(chartResults, tempStorage);
+            }
+            
         }
 
         private void btnShowDict_Click(object sender, EventArgs e)
