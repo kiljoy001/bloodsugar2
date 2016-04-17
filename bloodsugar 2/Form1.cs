@@ -2,8 +2,6 @@
 using System.Data.SQLite;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Windows.Forms.DataVisualization.Charting;
 using System.IO;
 
 
@@ -121,6 +119,7 @@ namespace bloodsugar_2
                         }
                         dbConnect.Close();
                     }
+                    listBResult.Items.Clear();
                     listBResult.Items.Add(mainModel.fromUnixTime(dbDate).ToShortDateString() +" " + dbResult);
                 }
             }
@@ -169,6 +168,10 @@ namespace bloodsugar_2
                 txtResult.Clear();
                 chartResults.Series[0].Points.Clear();
                 mainModel.chartIt(chartResults, tempStorage);
+            }
+            else
+            {
+                MessageBox.Show("Please enter a number into the box!", "Error!", MessageBoxButtons.OK);
             }
             
         }
