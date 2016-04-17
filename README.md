@@ -1,4 +1,4 @@
-# bloodsugar2 alpha
+# bloodsugar2 beta
 rewrite using sqlite
 
 Thank you for your interest in this project!
